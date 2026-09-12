@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Tu premio | Mesa de Maestros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nogal:#24160F;
+  --casilla-a:#2A1A12;
+  --casilla-b:#24160F;
+  --tabla:#5A3A22;
+  --laton:#C9A24A;
+  --laton-claro:#E6CB82;
+  --marfil:#EFE6D2;
+  --marfil-tenue:#BDAF96;
+  --pano:#1E4A38;
+  --lacre:#A3261F;
+  --serif:"Young Serif", Georgia, serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--marfil);
+  font:400 1.0625rem/1.6 var(--sans);
+  background-color:var(--nogal);
+  background-image:repeating-conic-gradient(var(--casilla-a) 0 25%, var(--casilla-b) 0 50%);
+  background-size:112px 112px;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laton-claro);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+
+.marca{
+  font-family:var(--serif);
+  color:var(--laton);
+  font-size:1.05rem;
+  margin:0;
+  padding-top:40px;
+}
+.marca span{margin-right:.35em}
+
+h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(2.25rem, 7.5vw, 3.75rem);
+  line-height:1.04;
+  letter-spacing:-.012em;
+  margin:.35em 0 .4em;
+  text-wrap:balance;
+}
+h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(1.5rem, 4.5vw, 2rem);
+  line-height:1.15;
+  margin:0 0 .5em;
+}
+.lede{font-size:1.15rem;color:var(--marfil);max-width:36em;margin:0 0 1.5em}
+.tenue{color:var(--marfil-tenue)}
+
+/* ---------- Botones ---------- */
+.boton{
+  display:inline-flex;align-items:center;justify-content:center;
+  font:700 1.1rem/1.2 var(--sans);
+  text-decoration:none;text-align:center;
+  padding:16px 26px;
+  border-radius:8px;
+  border:0;cursor:pointer;
+  background:var(--laton);color:var(--nogal);
+  transition:background .15s ease, transform .15s ease;
+}
+.boton:hover{background:var(--laton-claro)}
+.boton:active{transform:translateY(1px)}
+.boton-sec{background:transparent;color:var(--marfil);box-shadow:inset 0 0 0 1.5px rgba(239,230,210,.5)}
+.boton-sec:hover{background:rgba(239,230,210,.08)}
+
+/* ---------- Lomo de libro ---------- */
+.lomo{
+  --c:#6B4A2E;
+  flex:0 0 auto;
+  width:54px;height:var(--h,220px);
+  border-radius:3px 3px 1px 1px;
+  background:
+    linear-gradient(to bottom,
+      transparent 16px, var(--laton) 16px 19px, transparent 19px 24px, var(--laton) 24px 25px, transparent 25px
+    ),
+    linear-gradient(to top,
+      transparent 16px, var(--laton) 16px 19px, transparent 19px
+    ),
+    var(--c);
+  box-shadow:inset 7px 0 0 rgba(255,255,255,.07), inset -5px 0 0 rgba(0,0,0,.28);
+  color:#F4EBD8;
+  font-family:var(--serif);
+  font-size:.92rem;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  display:flex;align-items:center;
+  padding:32px 0 28px;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
+
+/* ---------- Estantería (landing) ---------- */
+.estante{
+  position:relative;
+  overflow:hidden;
+  margin:8px 0 0;
+  padding-top:30px;
+  border-bottom:16px solid var(--tabla);
+  box-shadow:0 22px 30px -18px rgba(0,0,0,.8);
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.estante-pista{
+  display:flex;align-items:flex-end;gap:7px;
+  width:max-content;
+  animation:desfile 42s linear infinite;
+}
+.estante:hover .estante-pista{animation-play-state:paused}
+@keyframes desfile{to{transform:translateX(-50%)}}
+
+/* ---------- Registro ---------- */
+.registro{
+  margin:44px 0 0;
+  background:var(--pano);
+  border:1px solid rgba(201,162,74,.55);
+  border-radius:12px;
+  padding:26px 22px 22px;
+}
+.pendiente{
+  border:1.5px dashed rgba(239,230,210,.5);
+  border-radius:8px;
+  padding:22px;
+  color:var(--marfil-tenue);
+  font-size:.95rem;
+}
+.pasos{margin:22px 0 0;padding-left:1.3em}
+.pasos li{margin:0 0 .55em;padding-left:.2em}
+.pasos li::marker{font-family:var(--serif);color:var(--laton)}
+
+.pie{padding:36px 0 56px;font-size:.9rem;color:var(--marfil-tenue)}
+
+/* ---------- Premio ---------- */
+.cabecera{text-align:center;padding-top:36px}
+.sello{
+  width:92px;height:92px;margin:0 auto;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #C8392F, var(--lacre) 60%, #6E1813);
+  box-shadow:0 0 0 6px rgba(163,38,31,.25), 0 10px 24px rgba(0,0,0,.5);
+  display:grid;place-items:center;
+  font-size:2.6rem;color:#F6DCCF;
+  animation:sello .7s cubic-bezier(.2,1.6,.4,1) both;
+}
+@keyframes sello{from{transform:scale(.3) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
+.cabecera .lede{margin:0 auto 1em}
+
+.bloque{margin:48px 0 0}
+.bloque-video{margin-top:30px}
+.video{
+  position:relative;aspect-ratio:16/9;
+  border-radius:10px;overflow:hidden;
+  background:#140C08;
+  border:1px solid rgba(201,162,74,.4);
+}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.portada-video{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#140C08;display:grid;place-items:center}
+.portada-video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portada-video::before{content:"";position:absolute;inset:0;background:rgba(20,12,8,.28);transition:background .15s}
+.portada-video:hover::before{background:rgba(20,12,8,.1)}
+.portada-video .play{
+  position:relative;width:76px;height:76px;border-radius:50%;
+  background:var(--laton);display:grid;place-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.55);transition:transform .15s, background .15s;
+}
+.portada-video:hover .play{transform:scale(1.08);background:var(--laton-claro)}
+.portada-video .play::after{content:"";border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent var(--nogal);margin-left:6px}
+.portada-video.sin-portada{background:repeating-linear-gradient(45deg,#2A1A12 0 12px,#241610 12px 24px)}
+.alterno{margin:.7em 0 0;font-size:.92rem;color:var(--marfil-tenue);text-align:right}
+.alterno a{color:var(--laton-claro)}
+.video .pendiente{position:absolute;inset:14px;display:grid;place-items:center;text-align:center;overflow:auto;font-size:.88rem;line-height:1.4}
+
+.caja-enlace{
+  background:var(--pano);
+  border:1px solid rgba(201,162,74,.55);
+  border-radius:12px;
+  padding:24px 22px;
+}
+.boton-enlace{
+  position:relative;width:100%;
+  font-size:1.2rem;padding:20px 22px;
+}
+.boton-enlace::after{
+  content:"";position:absolute;inset:0;border-radius:8px;
+  box-shadow:0 0 0 0 rgba(230,203,130,.6);
+  animation:pulso 2.4s ease-out infinite;
+}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 rgba(230,203,130,.55)}
+  70%{box-shadow:0 0 0 16px rgba(230,203,130,0)}
+  100%{box-shadow:0 0 0 0 rgba(230,203,130,0)}
+}
+.caja-enlace p{margin:.8em 0 0;font-size:.95rem;color:var(--marfil-tenue)}
+.falta{
+  display:block;background:#5C1F1B;border:1.5px solid #E08A82;border-radius:8px;
+  padding:14px 16px;margin:0 0 14px;color:#FFE3DE!important;font-size:.95rem;line-height:1.45;
+}
+.falta code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:4px;font-size:.9em}
+.boton.muerto{background:#6B5A38;color:#241A0C;cursor:not-allowed}
+.nombre-premio{margin:0 0 .9em!important;font-family:var(--serif);font-size:1.25rem;color:var(--marfil)!important;line-height:1.25}
+
+/* estante del sorteo: 10 lomos que caben en móvil */
+.sorteo-estante{
+  display:grid;grid-template-columns:repeat(var(--n,10),1fr);gap:5px;
+  align-items:end;
+  padding:34px 4px 0;
+  border-bottom:14px solid var(--tabla);
+  box-shadow:0 20px 26px -18px rgba(0,0,0,.8);
+}
+.sorteo-estante .lomo{
+  width:auto;height:var(--h,160px);
+  font-size:.72rem;padding:26px 0 22px;
+  transition:transform .25s cubic-bezier(.2,1.4,.4,1), filter .15s;
+}
+.sorteo-estante .lomo.foco{filter:brightness(1.55)}
+.sorteo-estante .lomo.elegido{
+  transform:rotate(180deg) translateY(26px);
+  filter:brightness(1.25);
+  box-shadow:inset 7px 0 0 rgba(255,255,255,.1), inset -5px 0 0 rgba(0,0,0,.28), 0 0 0 2px var(--laton-claro), 0 0 22px rgba(230,203,130,.55);
+}
+
+.premios{display:grid;gap:14px;margin:30px 0 0;padding:0;list-style:none}
+.tarjeta{
+  display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;
+  background:rgba(20,12,8,.72);
+  border:1px solid rgba(201,162,74,.35);
+  border-radius:10px;
+  padding:14px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .45s ease, transform .45s ease;
+}
+.tarjeta.visible{opacity:1;transform:none}
+.portada{
+  height:88px;border-radius:2px 5px 5px 2px;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.3) 0 5px, transparent 5px),
+    linear-gradient(to bottom, transparent 12px, var(--laton) 12px 14px, transparent 14px calc(100% - 14px), var(--laton) calc(100% - 14px) calc(100% - 12px), transparent calc(100% - 12px)),
+    var(--c);
+  box-shadow:0 6px 14px rgba(0,0,0,.45);
+}
+.tarjeta h3{font-family:var(--serif);font-weight:400;font-size:1.15rem;line-height:1.2;margin:0}
+.tarjeta .autor{margin:.15em 0 .7em;font-size:.92rem;color:var(--marfil-tenue)}
+.tarjeta .boton{padding:10px 16px;font-size:.95rem}
+
+/* barra fija para que nadie se salte nada */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  display:flex;gap:10px;justify-content:center;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(36,22,15,.94);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-top:1px solid rgba(201,162,74,.4);
+}
+.barra .boton{flex:1;max-width:320px;padding:13px 14px;font-size:1rem}
+.con-barra{padding-bottom:110px}
+
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:10}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .estante-pista{flex-wrap:wrap;width:auto;justify-content:center}
+  .estante-pista .copia{display:none}
+}
+</style>
+<script>
+/* =========================================================
+   CONFIGURACIÓN — lo único que tienes que editar
+   ========================================================= */
+window.MDM_CONFIG = {
+    canal: "Mesa de Maestros",
+
+    // Cuántos libros gana cada persona
+    cantidadPremio: 3,
+
+    // EL PREMIO PRINCIPAL: la skill de Claude
+    premio: {
+      nombre: "Claude Skill para preparación de aperturas",
+      url: "https://drive.google.com/drive/folders/1IL02yfLiU8lHPuegg-KUSfwXMVKxrlgL?usp=sharing",
+      texto: "Abrir la Claude Skill en Drive",
+      descripcion: "Revisa hoy todas tus variantes."
+    },
+
+    // ID del video. En https://youtu.be/QlVpRdtiHsA el ID es QlVpRdtiHsA
+    // En https://www.youtube.com/watch?v=QlVpRdtiHsA también es QlVpRdtiHsA
+    videoYoutubeId: "QlVpRdtiHsA",
+
+    // Los 10 libros, todos de Project Gutenberg (dominio público en EE. UU.)
+    libros: [
+      { titulo: "Chess Fundamentals", autor: "José Raúl Capablanca", pdf: "https://www.gutenberg.org/ebooks/33870", color: "#7A2E22" },
+      { titulo: "Chess Strategy", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/5614", color: "#1F4D3A" },
+      { titulo: "The Blue Book of Chess", autor: "Howard Staunton", pdf: "https://www.gutenberg.org/ebooks/16377", color: "#2C3E63" },
+      { titulo: "Chess and Checkers: The Way to Mastership", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/4913", color: "#6B4A2E" },
+      { titulo: "The Exploits and Triumphs of Paul Morphy", autor: "Frederick Milnes Edge", pdf: "https://www.gutenberg.org/ebooks/34180", color: "#4A2A45" },
+      { titulo: "Chess History and Reminiscences", autor: "H. E. Bird", pdf: "https://www.gutenberg.org/ebooks/4902", color: "#8A5A1E" },
+      { titulo: "Chess Generalship, Vol. I", autor: "Franklin K. Young", pdf: "https://www.gutenberg.org/ebooks/55278", color: "#2F5552" },
+      { titulo: "Studies of Chess", autor: "F. D. Philidor", pdf: "https://www.gutenberg.org/ebooks/78804", color: "#5C1F1B" },
+      { titulo: "Checkmates for Three Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4542", color: "#37402A" },
+      { titulo: "Checkmates for Four Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4656", color: "#3B2B5A" }
+    ]
+  };
+</script>
+</head>
+<body class="con-barra">
+<canvas id="confeti" aria-hidden="true"></canvas>
+
+<header class="wrap cabecera">
+  <div class="sello" aria-hidden="true">♚</div>
+  <h1>¡Listo, ya tienes acceso!</h1>
+  <p class="lede">Dale play al video, dura poco y te explica cómo usar la skill. Justo abajo está tu acceso y los 3 libros que te tocaron.</p>
+</header>
+
+<main class="wrap">
+  <section class="bloque bloque-video" aria-labelledby="t-video">
+    <h2 id="t-video">Empieza por aquí</h2>
+    <div class="video" id="video"></div>
+  </section>
+
+  <section class="bloque" id="enlace" aria-labelledby="t-enlace">
+    <h2 id="t-enlace">Tu skill de Claude</h2>
+    <div class="caja-enlace">
+      <p class="nombre-premio" id="nombre-premio"></p>
+      <a class="boton boton-enlace" id="boton-enlace" href="#" target="_blank" rel="noopener">Abrir la skill en Drive</a>
+      <p id="desc-enlace"></p>
+    </div>
+  </section>
+
+  <section class="bloque" id="sorteo" aria-labelledby="t-sorteo">
+    <h2 id="t-sorteo">Además, tus 3 libros</h2>
+    <p class="tenue" id="estado-sorteo">Sorteados al azar entre los 10 de la estantería.</p>
+    <div class="sorteo-estante" id="estante" aria-hidden="true"></div>
+    <ol class="premios" id="premios" aria-live="polite"></ol>
+  </section>
+
+  <p class="pie">La skill y los libros también te llegaron al correo, así que si cierras la pestaña no pierdes nada.</p>
+</main>
+
+<nav class="barra" aria-label="Accesos rápidos">
+  <a class="boton" id="barra-enlace" href="#" target="_blank" rel="noopener">Abrir la skill</a>
+  <a class="boton boton-sec" href="#sorteo">Ver mis libros</a>
+</nav>
+
+<script>
+(function(){
+  var C = window.MDM_CONFIG || {libros:[], enlace:{}};
+  var libros = C.libros || [];
+  var n = libros.length;
+  var k = Math.min(C.cantidadPremio || 3, n);
+  var sinMovimiento = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.getElementById('t-sorteo').textContent = 'Además, tus ' + k + ' libros';
+  document.getElementById('estado-sorteo').textContent = 'Sorteados al azar entre los ' + n + ' de la estantería.';
+
+  /* ---------- Premio principal ---------- */
+  var e = C.premio || C.enlace || {};
+  document.getElementById('nombre-premio').textContent = e.nombre || '';
+  var botonEnlace = document.getElementById('boton-enlace');
+  var urlVacia = !e.url || /TU-ENLACE-AQUI/.test(e.url) || /drive\.google\.com\/\.\.\./.test(e.url);
+  ['boton-enlace','barra-enlace'].forEach(function(id){ document.getElementById(id).href = urlVacia ? '#' : e.url; });
+  if (urlVacia){
+    var aviso = document.createElement('p');
+    aviso.className = 'falta';
+    aviso.innerHTML = '<strong>FALTA EL LINK DE LA SKILL.</strong><br>Abre este archivo con un editor de texto, busca <code>premio:</code> arriba del todo y reemplaza <code>url</code> por el link de tu carpeta de Drive.';
+    botonEnlace.parentNode.insertBefore(aviso, botonEnlace);
+    botonEnlace.classList.add('muerto');
+    document.getElementById('barra-enlace').classList.add('muerto');
+  }
+  if (e.texto) document.getElementById('boton-enlace').textContent = e.texto;
+  document.getElementById('desc-enlace').textContent = e.descripcion || '';
+
+  /* ---------- Video ---------- */
+  var v = document.getElementById('video');
+  if (C.videoYoutubeId){
+    var id = String(C.videoYoutubeId).trim();
+    // portada con botón de play: se ve siempre, aunque el iframe no cargue
+    var portada = document.createElement('button');
+    portada.type = 'button';
+    portada.className = 'portada-video';
+    portada.setAttribute('aria-label', 'Reproducir el video');
+    var img = document.createElement('img');
+    img.alt = '';
+    img.loading = 'lazy';
+    img.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
+    img.onerror = function(){
+      if (img.dataset.paso !== '2'){ img.dataset.paso = '2'; img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
+      else { img.remove(); portada.classList.add('sin-portada'); }
+    };
+    var play = document.createElement('span');
+    play.className = 'play';
+    play.setAttribute('aria-hidden', 'true');
+    portada.appendChild(img);
+    portada.appendChild(play);
+    portada.onclick = function(){
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
+      f.title = 'Video de bienvenida';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      v.innerHTML = '';
+      v.appendChild(f);
+    };
+    v.appendChild(portada);
+
+    var alterno = document.createElement('p');
+    alterno.className = 'alterno';
+    alterno.innerHTML = '¿No carga? <a href="https://youtu.be/' + id + '" target="_blank" rel="noopener">Ábrelo en YouTube</a>';
+    v.parentNode.appendChild(alterno);
+  } else {
+    v.innerHTML = '<div class="pendiente"><strong>FALTA EL VIDEO.</strong><br>Sube el video a YouTube, copia lo que va después de <code>v=</code> en la URL y pégalo arriba en <code>videoYoutubeId</code>.</div>';
+  }
+
+  /* ---------- Sorteo reproducible ---------- */
+  function semillaDeTexto(s){
+    var h = 1779033703 ^ s.length;
+    for (var i = 0; i < s.length; i++){ h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19; }
+    h = Math.imul(h ^ h >>> 16, 2246822507); h = Math.imul(h ^ h >>> 13, 3266489909);
+    return (h ^ h >>> 16) >>> 0;
+  }
+  function mulberry32(a){
+    return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  }
+  function elegir(){
+    var CLAVE = 'mdm-premio-v1-' + n;
+    try {
+      var g = JSON.parse(localStorage.getItem(CLAVE));
+      if (Array.isArray(g) && g.length === k && g.every(function(i){ return i >= 0 && i < n; })) return g;
+    } catch(_){}
+    var q = location.search.replace(/^\?/, ''), rnd;
+    if (q) rnd = mulberry32(semillaDeTexto(q));               // mismo suscriptor = mismos libros
+    else if (window.crypto && crypto.getRandomValues){ var a = new Uint32Array(1); crypto.getRandomValues(a); rnd = mulberry32(a[0]); }
+    else rnd = Math.random;
+    var idx = []; for (var i = 0; i < n; i++) idx.push(i);
+    for (var j = n - 1; j > 0; j--){ var r = Math.floor(rnd() * (j + 1)); var t = idx[j]; idx[j] = idx[r]; idx[r] = t; }
+    var pick = idx.slice(0, k);
+    try { localStorage.setItem(CLAVE, JSON.stringify(pick)); } catch(_){}
+    return pick;
+  }
+  var elegidos = elegir();
+
+  /* ---------- Estantería y tarjetas ---------- */
+  var estante = document.getElementById('estante');
+  estante.style.setProperty('--n', n);
+  var lomos = libros.map(function(l, i){
+    var d = document.createElement('div');
+    d.className = 'lomo';
+    d.style.setProperty('--c', l.color || '#6B4A2E');
+    d.style.setProperty('--h', (140 + ((i * 29) % 34)) + 'px');
+    d.textContent = l.titulo;
+    estante.appendChild(d);
+    return d;
+  });
+
+  var lista = document.getElementById('premios');
+  var tarjetas = elegidos.map(function(i){
+    var l = libros[i];
+    var li = document.createElement('li');
+    li.className = 'tarjeta';
+    li.innerHTML = '<div class="portada"></div><div><h3></h3><p class="autor"></p><a class="boton" target="_blank" rel="noopener">Abrir el libro</a></div>';
+    li.querySelector('.portada').style.setProperty('--c', l.color || '#6B4A2E');
+    li.querySelector('h3').textContent = l.titulo;
+    li.querySelector('.autor').textContent = l.autor || '';
+    var a = li.querySelector('a');
+    if (!l.pdf || /drive\.google\.com\/\.\.\./.test(l.pdf)){
+      a.href = '#'; a.classList.add('muerto'); a.textContent = 'Falta el link del libro';
+    } else { a.href = l.pdf; }
+    lista.appendChild(li);
+    return li;
+  });
+
+  function mostrarTodo(){
+    elegidos.forEach(function(i, p){ lomos[i].classList.add('elegido'); tarjetas[p].classList.add('visible'); });
+  }
+
+  function esperar(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  async function sortear(){
+    var pos = Math.floor(Math.random() * n);
+    for (var p = 0; p < elegidos.length; p++){
+      var meta = elegidos[p];
+      var dist = ((meta - pos) % n + n) % n;
+      var pasos = (p === 0 ? n : (dist < 4 ? n : 0)) + dist;
+      for (var s = 0; s <= pasos; s++){
+        lomos.forEach(function(x){ x.classList.remove('foco'); });
+        lomos[(pos + s) % n].classList.add('foco');
+        await esperar(35 + Math.pow(s / Math.max(pasos, 1), 3) * 240);
+      }
+      lomos[meta].classList.remove('foco');
+      lomos[meta].classList.add('elegido');
+      tarjetas[p].classList.add('visible');
+      pos = meta;
+      await esperar(380);
+    }
+  }
+
+  if (sinMovimiento || !('IntersectionObserver' in window)){
+    mostrarTodo();
+  } else {
+    var yaSorteado = false;
+    new IntersectionObserver(function(entradas, obs){
+      if (entradas[0].isIntersecting && !yaSorteado){ yaSorteado = true; obs.disconnect(); sortear(); }
+    }, {threshold: .45}).observe(estante);
+  }
+
+  /* ---------- Confeti (una sola vez) ---------- */
+  if (!sinMovimiento){
+    var cv = document.getElementById('confeti'), cx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function ajustar(){ cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
+    ajustar(); addEventListener('resize', ajustar);
+    var colores = ['#C9A24A','#E6CB82','#EFE6D2','#A3261F','#1E4A38'];
+    var piezas = [];
+    for (var i = 0; i < 140; i++){
+      piezas.push({
+        x: innerWidth / 2 + (Math.random() - .5) * 80, y: innerHeight * .22,
+        vx: (Math.random() - .5) * 11, vy: -Math.random() * 11 - 3,
+        w: 5 + Math.random() * 6, h: 8 + Math.random() * 8,
+        r: Math.random() * Math.PI, vr: (Math.random() - .5) * .3,
+        c: colores[i % colores.length]
+      });
+    }
+    var inicio = performance.now();
+    (function cuadro(t){
+      var dt = t - inicio;
+      cx.clearRect(0, 0, innerWidth, innerHeight);
+      piezas.forEach(function(p){
+        p.vy += .28; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r);
+        cx.globalAlpha = Math.max(0, 1 - dt / 3200);
+        cx.fillStyle = p.c; cx.fillRect(-p.w/2, -p.h/2, p.w, p.h * Math.abs(Math.cos(p.r * 2)) + 1);
+        cx.restore();
+      });
+      if (dt < 3300) requestAnimationFrame(cuadro); else cx.clearRect(0, 0, innerWidth, innerHeight);
+    })(inicio);
+  }
+})();
+</script>
+</body>
+</html>
