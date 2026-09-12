@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llévate gratis mi skill de Claude para ajedrez | Mesa de Maestros</title>
+<meta name="description" content="Registra tu correo y te llevas gratis mi skill de Claude para ajedrez, y además se te sortean 3 libros de ajedrez en PDF al azar entre 10.">
+<meta property="og:title" content="Llévate gratis mi skill de Claude para ajedrez">
+<meta property="og:description" content="Y además 3 libros de ajedrez en PDF sorteados al azar entre 10.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nogal:#24160F;
+  --casilla-a:#2A1A12;
+  --casilla-b:#24160F;
+  --tabla:#5A3A22;
+  --laton:#C9A24A;
+  --laton-claro:#E6CB82;
+  --marfil:#EFE6D2;
+  --marfil-tenue:#BDAF96;
+  --pano:#1E4A38;
+  --lacre:#A3261F;
+  --serif:"Young Serif", Georgia, serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--marfil);
+  font:400 1.0625rem/1.6 var(--sans);
+  background-color:var(--nogal);
+  background-image:repeating-conic-gradient(var(--casilla-a) 0 25%, var(--casilla-b) 0 50%);
+  background-size:112px 112px;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laton-claro);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+
+.marca{
+  font-family:var(--serif);
+  color:var(--laton);
+  font-size:1.05rem;
+  margin:0;
+  padding-top:40px;
+}
+.marca span{margin-right:.35em}
+
+h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(2.25rem, 7.5vw, 3.75rem);
+  line-height:1.04;
+  letter-spacing:-.012em;
+  margin:.35em 0 .4em;
+  text-wrap:balance;
+}
+h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(1.5rem, 4.5vw, 2rem);
+  line-height:1.15;
+  margin:0 0 .5em;
+}
+.lede{font-size:1.15rem;color:var(--marfil);max-width:36em;margin:0 0 1.5em}
+.tenue{color:var(--marfil-tenue)}
+
+/* ---------- Botones ---------- */
+.boton{
+  display:inline-flex;align-items:center;justify-content:center;
+  font:700 1.1rem/1.2 var(--sans);
+  text-decoration:none;text-align:center;
+  padding:16px 26px;
+  border-radius:8px;
+  border:0;cursor:pointer;
+  background:var(--laton);color:var(--nogal);
+  transition:background .15s ease, transform .15s ease;
+}
+.boton:hover{background:var(--laton-claro)}
+.boton:active{transform:translateY(1px)}
+.boton-sec{background:transparent;color:var(--marfil);box-shadow:inset 0 0 0 1.5px rgba(239,230,210,.5)}
+.boton-sec:hover{background:rgba(239,230,210,.08)}
+
+/* ---------- Lomo de libro ---------- */
+.lomo{
+  --c:#6B4A2E;
+  flex:0 0 auto;
+  width:54px;height:var(--h,220px);
+  border-radius:3px 3px 1px 1px;
+  background:
+    linear-gradient(to bottom,
+      transparent 16px, var(--laton) 16px 19px, transparent 19px 24px, var(--laton) 24px 25px, transparent 25px
+    ),
+    linear-gradient(to top,
+      transparent 16px, var(--laton) 16px 19px, transparent 19px
+    ),
+    var(--c);
+  box-shadow:inset 7px 0 0 rgba(255,255,255,.07), inset -5px 0 0 rgba(0,0,0,.28);
+  color:#F4EBD8;
+  font-family:var(--serif);
+  font-size:.92rem;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  display:flex;align-items:center;
+  padding:32px 0 28px;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
+
+/* ---------- Estantería (landing) ---------- */
+.estante{
+  position:relative;
+  overflow:hidden;
+  margin:8px 0 0;
+  padding-top:30px;
+  border-bottom:16px solid var(--tabla);
+  box-shadow:0 22px 30px -18px rgba(0,0,0,.8);
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.estante-pista{
+  display:flex;align-items:flex-end;gap:7px;
+  width:max-content;
+  animation:desfile 42s linear infinite;
+}
+.estante:hover .estante-pista{animation-play-state:paused}
+@keyframes desfile{to{transform:translateX(-50%)}}
+
+/* ---------- Registro ---------- */
+.registro{
+  margin:44px 0 0;
+  background:var(--pano);
+  border:1px solid rgba(201,162,74,.55);
+  border-radius:12px;
+  padding:26px 22px 22px;
+}
+.falta{
+  display:block;background:#5C1F1B;border:1.5px solid #E08A82;border-radius:8px;
+  padding:16px 18px;color:#FFE3DE;font-size:.95rem;line-height:1.5;
+}
+.falta code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:4px;font-size:.9em}
+.pendiente{
+  border:1.5px dashed rgba(239,230,210,.5);
+  border-radius:8px;
+  padding:22px;
+  color:var(--marfil-tenue);
+  font-size:.95rem;
+}
+.pasos{margin:22px 0 0;padding-left:1.3em}
+.pasos li{margin:0 0 .55em;padding-left:.2em}
+.pasos li::marker{font-family:var(--serif);color:var(--laton)}
+
+.pie{padding:36px 0 56px;font-size:.9rem;color:var(--marfil-tenue)}
+.extra{margin:34px auto 0;font-size:1.05rem;color:var(--marfil-tenue)}
+.extra strong{color:var(--marfil)}
+
+/* ---------- Premio ---------- */
+.cabecera{text-align:center;padding-top:36px}
+.sello{
+  width:92px;height:92px;margin:0 auto;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #C8392F, var(--lacre) 60%, #6E1813);
+  box-shadow:0 0 0 6px rgba(163,38,31,.25), 0 10px 24px rgba(0,0,0,.5);
+  display:grid;place-items:center;
+  font-size:2.6rem;color:#F6DCCF;
+  animation:sello .7s cubic-bezier(.2,1.6,.4,1) both;
+}
+@keyframes sello{from{transform:scale(.3) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
+.cabecera .lede{margin:0 auto 1em}
+
+.bloque{margin:48px 0 0}
+.video{
+  position:relative;aspect-ratio:16/9;
+  border-radius:10px;overflow:hidden;
+  background:#140C08;
+  border:1px solid rgba(201,162,74,.4);
+}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video .falta{
+  display:block;background:#5C1F1B;border:1.5px solid #E08A82;border-radius:8px;
+  padding:16px 18px;color:#FFE3DE;font-size:.95rem;line-height:1.5;
+}
+.falta code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:4px;font-size:.9em}
+.pendiente{position:absolute;inset:14px;display:grid;place-items:center;text-align:center}
+
+.caja-enlace{
+  background:var(--pano);
+  border:1px solid rgba(201,162,74,.55);
+  border-radius:12px;
+  padding:24px 22px;
+}
+.boton-enlace{
+  position:relative;width:100%;
+  font-size:1.2rem;padding:20px 22px;
+}
+.boton-enlace::after{
+  content:"";position:absolute;inset:0;border-radius:8px;
+  box-shadow:0 0 0 0 rgba(230,203,130,.6);
+  animation:pulso 2.4s ease-out infinite;
+}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 rgba(230,203,130,.55)}
+  70%{box-shadow:0 0 0 16px rgba(230,203,130,0)}
+  100%{box-shadow:0 0 0 0 rgba(230,203,130,0)}
+}
+.caja-enlace p{margin:.8em 0 0;font-size:.95rem;color:var(--marfil-tenue)}
+
+/* estante del sorteo: 10 lomos que caben en móvil */
+.sorteo-estante{
+  display:grid;grid-template-columns:repeat(var(--n,10),1fr);gap:5px;
+  align-items:end;
+  padding:34px 4px 0;
+  border-bottom:14px solid var(--tabla);
+  box-shadow:0 20px 26px -18px rgba(0,0,0,.8);
+}
+.sorteo-estante .lomo{
+  width:auto;height:var(--h,160px);
+  font-size:.72rem;padding:26px 0 22px;
+  transition:transform .25s cubic-bezier(.2,1.4,.4,1), filter .15s;
+}
+.sorteo-estante .lomo.foco{filter:brightness(1.55)}
+.sorteo-estante .lomo.elegido{
+  transform:rotate(180deg) translateY(26px);
+  filter:brightness(1.25);
+  box-shadow:inset 7px 0 0 rgba(255,255,255,.1), inset -5px 0 0 rgba(0,0,0,.28), 0 0 0 2px var(--laton-claro), 0 0 22px rgba(230,203,130,.55);
+}
+
+.premios{display:grid;gap:14px;margin:30px 0 0;padding:0;list-style:none}
+.tarjeta{
+  display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;
+  background:rgba(20,12,8,.72);
+  border:1px solid rgba(201,162,74,.35);
+  border-radius:10px;
+  padding:14px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .45s ease, transform .45s ease;
+}
+.tarjeta.visible{opacity:1;transform:none}
+.portada{
+  height:88px;border-radius:2px 5px 5px 2px;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.3) 0 5px, transparent 5px),
+    linear-gradient(to bottom, transparent 12px, var(--laton) 12px 14px, transparent 14px calc(100% - 14px), var(--laton) calc(100% - 14px) calc(100% - 12px), transparent calc(100% - 12px)),
+    var(--c);
+  box-shadow:0 6px 14px rgba(0,0,0,.45);
+}
+.tarjeta h3{font-family:var(--serif);font-weight:400;font-size:1.15rem;line-height:1.2;margin:0}
+.tarjeta .autor{margin:.15em 0 .7em;font-size:.92rem;color:var(--marfil-tenue)}
+.tarjeta .boton{padding:10px 16px;font-size:.95rem}
+
+/* barra fija para que nadie se salte nada */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  display:flex;gap:10px;justify-content:center;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(36,22,15,.94);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-top:1px solid rgba(201,162,74,.4);
+}
+.barra .boton{flex:1;max-width:320px;padding:13px 14px;font-size:1rem}
+.con-barra{padding-bottom:110px}
+
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:10}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .estante-pista{flex-wrap:wrap;width:auto;justify-content:center}
+  .estante-pista .copia{display:none}
+}
+</style>
+<script>
+/* =========================================================
+   CONFIGURACIÓN — lo único que tienes que editar
+   ========================================================= */
+window.MDM_CONFIG = {
+    canal: "Mesa de Maestros",
+
+    // Cuántos libros gana cada persona
+    cantidadPremio: 3,
+
+    // EL PREMIO PRINCIPAL: la skill de Claude
+    premio: {
+      nombre: "Claude Skill para preparación de aperturas",
+      url: "https://drive.google.com/drive/folders/1IL02yfLiU8lHPuegg-KUSfwXMVKxrlgL?usp=sharing",
+      texto: "Abrir la Claude Skill en Drive",
+      descripcion: "Revisa hoy todas tus variantes."
+    },
+
+    // ID del video. En https://youtu.be/QlVpRdtiHsA el ID es QlVpRdtiHsA
+    // En https://www.youtube.com/watch?v=QlVpRdtiHsA también es QlVpRdtiHsA
+    videoYoutubeId: "QlVpRdtiHsA",
+
+    // Los 10 libros, todos de Project Gutenberg (dominio público en EE. UU.)
+    libros: [
+      { titulo: "Chess Fundamentals", autor: "José Raúl Capablanca", pdf: "https://www.gutenberg.org/ebooks/33870", color: "#7A2E22" },
+      { titulo: "Chess Strategy", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/5614", color: "#1F4D3A" },
+      { titulo: "The Blue Book of Chess", autor: "Howard Staunton", pdf: "https://www.gutenberg.org/ebooks/16377", color: "#2C3E63" },
+      { titulo: "Chess and Checkers: The Way to Mastership", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/4913", color: "#6B4A2E" },
+      { titulo: "The Exploits and Triumphs of Paul Morphy", autor: "Frederick Milnes Edge", pdf: "https://www.gutenberg.org/ebooks/34180", color: "#4A2A45" },
+      { titulo: "Chess History and Reminiscences", autor: "H. E. Bird", pdf: "https://www.gutenberg.org/ebooks/4902", color: "#8A5A1E" },
+      { titulo: "Chess Generalship, Vol. I", autor: "Franklin K. Young", pdf: "https://www.gutenberg.org/ebooks/55278", color: "#2F5552" },
+      { titulo: "Studies of Chess", autor: "F. D. Philidor", pdf: "https://www.gutenberg.org/ebooks/78804", color: "#5C1F1B" },
+      { titulo: "Checkmates for Three Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4542", color: "#37402A" },
+      { titulo: "Checkmates for Four Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4656", color: "#3B2B5A" }
+    ]
+  };
+</script>
+</head>
+<body>
+
+<header class="wrap">
+  <p class="marca"><span aria-hidden="true">♔</span><span class="canal">Mesa de Maestros</span></p>
+  <h1 id="titular">Llévate gratis mi skill de Claude para ajedrez</h1>
+  <p class="lede">Convierte a Claude en una IA especializada en preparación de aperturas.</p>
+  <a class="boton" href="#registro">Quiero la skill gratis</a>
+</header>
+
+<p class="wrap extra">Y además, <strong>3 libros de ajedrez en PDF</strong> sorteados al azar entre estos 10.</p>
+
+<div class="estante" aria-hidden="true">
+  <div class="estante-pista" id="pista"></div>
+</div>
+
+<main class="wrap">
+  <section class="registro" id="registro">
+    <h2>Escribe tu correo y desbloquéala</h2>
+
+    <!-- Formulario de beehiiv -->
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="c63637c0-b551-4133-8e1c-3775ba17ba1a"></script>
+
+    <ol class="pasos">
+      <li><strong>Escribes tu correo</strong> aquí arriba. Sin tarjeta y sin pagar nada.</li>
+      <li><strong>Se abre tu página de acceso</strong> con la skill lista y el sorteo de tus 3 libros.</li>
+      <li><strong>Abres la skill y descargas los PDF.</strong> Te llega todo al correo por si cierras la pestaña.</li>
+    </ol>
+  </section>
+
+  <p class="pie">La skill es para todos; los 3 libros salen de un sorteo entre los 10 de la estantería.</p>
+</main>
+
+<script>
+(function(){
+  var C = window.MDM_CONFIG || {libros:[]};
+  document.querySelectorAll('.canal').forEach(function(el){ el.textContent = C.canal || el.textContent; });
+
+  var pista = document.getElementById('pista');
+  function lomo(libro, i, copia){
+    var d = document.createElement('div');
+    d.className = 'lomo' + (copia ? ' copia' : '');
+    d.style.setProperty('--c', libro.color || '#6B4A2E');
+    d.style.setProperty('--h', (200 + ((i * 37) % 46)) + 'px');
+    d.textContent = libro.titulo;
+    return d;
+  }
+  // dos pasadas para que el desfile sea continuo
+  [false, true].forEach(function(copia){
+    C.libros.forEach(function(l, i){ pista.appendChild(lomo(l, i, copia)); });
+  });
+})();
+</script>
+<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+</body>
+</html>
