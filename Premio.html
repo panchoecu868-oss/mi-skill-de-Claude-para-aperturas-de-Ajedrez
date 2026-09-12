@@ -303,16 +303,16 @@ window.MDM_CONFIG = {
 
     // Los 10 libros, todos de Project Gutenberg (dominio público en EE. UU.)
     libros: [
-      { titulo: "Chess Fundamentals", autor: "José Raúl Capablanca", pdf: "https://www.gutenberg.org/ebooks/33870", color: "#7A2E22" },
-      { titulo: "Chess Strategy", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/5614", color: "#1F4D3A" },
-      { titulo: "The Blue Book of Chess", autor: "Howard Staunton", pdf: "https://www.gutenberg.org/ebooks/16377", color: "#2C3E63" },
-      { titulo: "Chess and Checkers: The Way to Mastership", autor: "Edward Lasker", pdf: "https://www.gutenberg.org/ebooks/4913", color: "#6B4A2E" },
-      { titulo: "The Exploits and Triumphs of Paul Morphy", autor: "Frederick Milnes Edge", pdf: "https://www.gutenberg.org/ebooks/34180", color: "#4A2A45" },
-      { titulo: "Chess History and Reminiscences", autor: "H. E. Bird", pdf: "https://www.gutenberg.org/ebooks/4902", color: "#8A5A1E" },
-      { titulo: "Chess Generalship, Vol. I", autor: "Franklin K. Young", pdf: "https://www.gutenberg.org/ebooks/55278", color: "#2F5552" },
-      { titulo: "Studies of Chess", autor: "F. D. Philidor", pdf: "https://www.gutenberg.org/ebooks/78804", color: "#5C1F1B" },
-      { titulo: "Checkmates for Three Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4542", color: "#37402A" },
-      { titulo: "Checkmates for Four Pieces", autor: "William Brett Fishburne", pdf: "https://www.gutenberg.org/ebooks/4656", color: "#3B2B5A" }
+      { titulo: "Chess Fundamentals", autor: "José Raúl Capablanca", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#7A2E22" },
+      { titulo: "Chess Strategy", autor: "Edward Lasker", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#1F4D3A" },
+      { titulo: "The Blue Book of Chess", autor: "Howard Staunton", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#2C3E63" },
+      { titulo: "Chess and Checkers: The Way to Mastership", autor: "Edward Lasker", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#6B4A2E" },
+      { titulo: "The Exploits and Triumphs of Paul Morphy", autor: "Frederick Milnes Edge", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#4A2A45" },
+      { titulo: "Chess History and Reminiscences", autor: "H. E. Bird", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#8A5A1E" },
+      { titulo: "Chess Generalship, Vol. I", autor: "Franklin K. Young", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#2F5552" },
+      { titulo: "Studies of Chess", autor: "F. D. Philidor", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#5C1F1B" },
+      { titulo: "Checkmates for Three Pieces", autor: "William Brett Fishburne", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#37402A" },
+      { titulo: "Checkmates for Four Pieces", autor: "William Brett Fishburne", pdf: "https://drive.google.com/drive/folders/1ogj0VgQ47oBcY5p5yZ0G2_VM6Rqdn8Rh?usp=drive_link", color: "#3B2B5A" }
     ]
   };
 </script>
@@ -473,12 +473,12 @@ window.MDM_CONFIG = {
     var l = libros[i];
     var li = document.createElement('li');
     li.className = 'tarjeta';
-    li.innerHTML = '<div class="portada"></div><div><h3></h3><p class="autor"></p><a class="boton" target="_blank" rel="noopener">Abrir el libro</a></div>';
+    li.innerHTML = '<div class="portada"></div><div><h3></h3><p class="autor"></p><a class="boton" target="_blank" rel="noopener">Descargar PDF</a></div>';
     li.querySelector('.portada').style.setProperty('--c', l.color || '#6B4A2E');
     li.querySelector('h3').textContent = l.titulo;
     li.querySelector('.autor').textContent = l.autor || '';
     var a = li.querySelector('a');
-    if (!l.pdf || /drive\.google\.com\/\.\.\./.test(l.pdf)){
+    if (!l.pdf || /drive\.google\.com\/\.\.\.$/.test(l.pdf)){
       a.href = '#'; a.classList.add('muerto'); a.textContent = 'Falta el link del libro';
     } else { a.href = l.pdf; }
     lista.appendChild(li);
