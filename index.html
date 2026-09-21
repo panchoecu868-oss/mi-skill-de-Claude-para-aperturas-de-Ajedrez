@@ -264,6 +264,27 @@ h2{
 
 #confeti{position:fixed;inset:0;pointer-events:none;z-index:10}
 
+/* ---------- Banner flotante: Versión Pro ---------- */
+.banner-pro{
+  position:fixed;left:0;right:0;bottom:0;z-index:6;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  justify-content:center;
+  padding:14px 40px calc(14px + env(safe-area-inset-bottom)) 18px;
+  background:var(--pano);
+  border-top:1px solid rgba(201,162,74,.55);
+  box-shadow:0 -10px 30px rgba(0,0,0,.35);
+}
+.banner-pro p{margin:0;font-size:.95rem;color:var(--marfil);max-width:520px;flex:1 1 260px}
+.banner-pro strong{color:var(--laton-claro)}
+.banner-pro .boton{padding:11px 18px;font-size:.95rem;white-space:nowrap}
+.banner-cerrar{
+  position:absolute;top:6px;right:8px;
+  background:transparent;border:0;color:var(--marfil-tenue);
+  font-size:1.1rem;line-height:1;cursor:pointer;padding:6px;
+}
+.banner-cerrar:hover{color:var(--marfil)}
+body.con-banner-pro{padding-bottom:104px}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .estante-pista{flex-wrap:wrap;width:auto;justify-content:center}
@@ -339,6 +360,30 @@ window.MDM_CONFIG = {
 
   <p class="pie">La skill es para todos; los 3 libros salen de un sorteo entre los 10 de la estantería.</p>
 </main>
+
+<div class="banner-pro" id="bannerPro" role="complementary" aria-label="Versión Pro">
+  <button type="button" class="banner-cerrar" id="bannerCerrar" aria-label="Cerrar aviso">✕</button>
+  <p><strong>Versión Pro — $25.</strong> Menos publicidad de mis propios contenidos, un previsualizador de tablero integrado y fuentes de pago (Chessable, Chessmood, cursos de GM) que solas cuestan más de $100 cada una.</p>
+  <a class="boton" href="https://whop.com/aichess/ajedrez-aprende-aperturas-en-minutos/" target="_blank" rel="noopener">Ver Versión Pro</a>
+</div>
+
+<script>
+(function(){
+  var KEY = 'mdm-banner-pro-cerrado';
+  var banner = document.getElementById('bannerPro');
+  var cerrado = false;
+  try { cerrado = localStorage.getItem(KEY) === '1'; } catch(_){}
+  if (cerrado){ banner.remove(); }
+  else {
+    document.body.classList.add('con-banner-pro');
+    document.getElementById('bannerCerrar').addEventListener('click', function(){
+      banner.remove();
+      document.body.classList.remove('con-banner-pro');
+      try { localStorage.setItem(KEY, '1'); } catch(_){}
+    });
+  }
+})();
+</script>
 
 <script>
 (function(){
